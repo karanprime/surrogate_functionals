@@ -304,7 +304,7 @@ if __name__ == "__main__":
     os.chdir(cwd + '/' + result_dir)
     
     residual = fit_with_Linear(dens,y,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper)
-    #model = fit_with_KerasNN(X_train,residual,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper, n_per_layer, n_layers, activation_choice,tol, slowdown_factor, early_stop_trials)
+    model = fit_with_KerasNN(X_train,residual,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper, n_per_layer, n_layers, activation_choice,tol, slowdown_factor, early_stop_trials)
     
     os.chdir(cwd)
     

@@ -102,7 +102,7 @@ def process_one_molecule(molecule, functional, h, L, N, target, gamma, num_desc_
     subsampled_data_dir = "{}_{}_gamma{}_dev{}_devsq{}_inte{}_{}_{}".format(functional, target, gamma, num_desc_deri,
                                                                             num_desc_deri_squa, num_desc_ave_dens,
                                                                             desc_transform, target_transform)
-
+    print molecule_dir_name + '/' + subsampled_data_dir
     if os.path.isdir(molecule_dir_name + '/' + subsampled_data_dir) == False:
         print '\n****Error: Cant find the directory! ****\n'
         raise NotImplementedError
@@ -179,24 +179,24 @@ def get_training_data(list_molecule_filename, functional, h, L, N, target, gamma
     print len(raw_overall)
     overall = raw_overall #subsampling_system_with_PCA(raw_overall, list_desc=[], cutoff_sig=0.002, rate=0.2,start_trial_component=9)
 
-    #X_train = []
+    X_train = []
     y_train = []
     dens = []
 
     for entry in overall:
         if entry[0] >= lower and entry[0] <= upper:
-            #X_train.append(list(entry[1:]))
+            X_train.append(list(entry[1:]))
             dens.append(entry[1])
             y_train.append(entry[0])
 
-    #X_train = (np.asarray(X_train))
+    X_train = (np.asarray(X_train))
     y_train = np.asarray(y_train).reshape((len(y_train), 1))
     dens = np.asarray(dens).reshape((len(dens), 1))
 
-    #print X_train.shape
+    print X_train.shape
     print y_train.shape
     print dens.shape
-    return y_train, dens
+    return X_train,y_train, dens
 
 
 if __name__ == "__main__":
@@ -215,18 +215,6 @@ if __name__ == "__main__":
     target_transform = sys.argv[12]
     lower = float(sys.argv[13])
     upper = float(sys.argv[14])
-    n_per_layer = int(sys.argv[15])
-    n_layers = int(sys.argv[16])
-    activation_choice = sys.argv[17]
-    slowdown_factor = float(sys.argv[18])
-    tol = float(sys.argv[19])
-    try:
-        early_stop_trials = int(sys.argv[20])
-    except:
-        early_stop_trials = 100
-
-    if activation_choice not in ['tanh', 'relu', 'sigmoid', 'softmax']:
-        raise ValueError
 
     if desc_transform not in ['log', 'real']:
         raise ValueError
@@ -238,6 +226,7 @@ if __name__ == "__main__":
     #    raise ValueError
 
     # print device_lib.list_local_devices()
+
     cwd = os.getcwd()
     result_dir = "{}_{}_{}_{}_{}_gamma{}_dev{}_devsq{}_inte{}_{}_{}_models".format(functional, str(L).replace('.', '-'),
                                                                                    str(h).replace('.', '-'), N, target,
@@ -248,13 +237,13 @@ if __name__ == "__main__":
     if os.path.isdir(result_dir) == False:
         os.makedirs(cwd + '/' + result_dir)
 
-    y, dens = get_training_data(list_molecule_filename, functional, h, L, N, target, gamma, num_desc_deri,
+    X_train, y, dens = get_training_data(list_molecule_filename, functional, h, L, N, target, gamma, num_desc_deri,
                                          num_desc_deri_squa, num_desc_ave_dens, desc_transform, target_transform, lower,
                                          upper)
 
     os.chdir(cwd + '/' + result_dir)
 
-    residual = fit_with_Linear(dens, y, functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,
+    residual = fit_with_Linear(X_train, y, functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,
                                desc_transform, target_transform, lower, upper)
 
     filename = 'Linear_{}_model_{}_gamma{}_dev{}_devsq{}_inte{}_{}_{}_{}_{}.p'.format(functional, target, gamma,
@@ -271,8 +260,9 @@ if __name__ == "__main__":
                                                                                             '.', '-'))
 
     result_list = []
-    result_list.append(residual.tolist())
-    result_list.append(dens.tolist())
+    result_list.append(residual)
+    for i in np.arange(X_train.shape[1]):
+        result_list.append(X_train[:,i])
     result = zip(*result_list)
 
     with open(filename, 'wb') as handle:

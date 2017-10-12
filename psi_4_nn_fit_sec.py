@@ -105,7 +105,7 @@ def fit_with_KerasNN(X, y, functional, target, gamma, num_desc_deri, num_desc_de
     except:
         restart = False
         n = int(n_per_layer)
-        k = 1 #hardcoded for rho
+        k = len(X[0])
         print n, k
 
         model = Sequential()
@@ -250,14 +250,14 @@ if __name__ == "__main__":
                                                                         
     print(filename)
     training_data = np.array(pickle.load(open(filename,'rb')));
-
+    print training_data.shape
     for ensemble_no in np.arange(ensemble_size):
     #80 % data for now
         subset_size = int(training_data.shape[0]*0.8)
         training_data_subset = np.random.permutation(training_data)[:subset_size]
 
-        residual = training_data_subset[:,0,0]
-        dens = training_data_subset[:,1,0]
+        residual = training_data_subset[:,0]
+        X_train = training_data_subset[:,1:]
 
         result_dir2 = result_dir+'_nn_{}'.format(ensemble_no)
 
@@ -272,13 +272,17 @@ if __name__ == "__main__":
 
         result_list = []
         result_list.append(residual.tolist())
-        result_list.append(dens.tolist())
+        result_list.append(X_train.tolist())
         result = zip(*result_list)
 
         with open(data_fname, 'wb') as handle:
             pickle.dump(result, handle, protocol=2)
         
-        model = fit_with_KerasNN(dens, residual, functional, target, gamma, num_desc_deri, num_desc_deri_squa,
+        #print X_train.reshape((257,2))
+        
+        print residual.shape
+        
+        model = fit_with_KerasNN(X_train, residual, functional, target, gamma, num_desc_deri, num_desc_deri_squa,
                              num_desc_ave_dens, desc_transform, target_transform, lower, upper, n_per_layer, n_layers,
                              activation_choice, tol, slowdown_factor, early_stop_trials, ensemble_no)
         os.chdir(cwd2)
