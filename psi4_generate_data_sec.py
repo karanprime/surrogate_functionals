@@ -9,6 +9,7 @@ Created on Mon Aug 14 19:34:19 2017
 import os
 import h5py
 import psi4
+#import psi4.core.BasisExtents
 import sys
 import json
 import collections
@@ -55,11 +56,13 @@ def process_one_section(x,y,z,w,x_start,x_end,y_start,y_end,z_start,z_end,out_sh
     yvec = psi4.core.Vector.from_array(y)
     zvec = psi4.core.Vector.from_array(z)
     wvec = psi4.core.Vector.from_array(w)
-
+    print("flag1")
     # Compute the spatial extent computed
     # Used for sieving
+    print(scf_wfn.basisset())
     extents = psi4.core.BasisExtents(scf_wfn.basisset(), 1.e-32)
     # Build a "block-O-points"
+    print("flag2")
     grid = psi4.core.BlockOPoints(xvec, yvec, zvec, wvec, extents)
 
     # Need a proper points funciton
@@ -210,7 +213,7 @@ def process_system(molecule, molecule_name, xc, h, cell, num_blocks, psi4_option
         raise Exception('Invalid block dividing')
     
     scf_e, scf_wfn = psi4.energy(xc, molecule=molecule, return_wfn=True)
-
+    print(scf_wfn)
     
     X0 = -Lx/2.
     Y0 = -Ly/2.

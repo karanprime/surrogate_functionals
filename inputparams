@@ -1,0 +1,4 @@
+gen data: single molecule_coord_database.json H2O 0.05 3. 3
+get desc: single H2O B3LYP 0.05 3. 3
+subsampl: single H2O 0.05 3 3 B3LYP 1 0 0 0 epxc log log
+fitting:  mol_list.txt B3LYP 0.05 3 3 1 0 0 0 epxc log log -30 10 10 4 tanh 1 1e-6

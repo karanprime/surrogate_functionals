@@ -215,7 +215,7 @@ def process_one_molecule(molecule, functional,h,L,N):
     pool.join()
         
     
-    
+    print('done')
     os.chdir(cwd)
     return
 

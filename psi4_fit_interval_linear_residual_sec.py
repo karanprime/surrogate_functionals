@@ -178,7 +178,7 @@ def process_one_molecule(molecule, functional,h,L,N, target, gamma, num_desc_der
     
     os.chdir(temp_cwd + '/' + molecule_dir_name + '/' + subsampled_data_dir)
     
-    molecule_overall_filename = "{}_{}_all_{}_gamma{}_dev{}_devsq{}_inte{}_{}_{}_subsampled_data.p".format(molecule,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform)
+    molecule_overall_filename = "{}_{}_all_{}_gamma{}_dev{}_devsq{}_inte{}_{}_{}_all_data.p".format(molecule,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform)
     
     try:
         molecule_overall = pickle.load(open(molecule_overall_filename,'rb'))
@@ -202,7 +202,7 @@ def process_one_molecule(molecule, functional,h,L,N, target, gamma, num_desc_der
 #            molecule_raw_overall += temp
             
         
-        molecule_overall = subsampling_system_with_PCA(molecule_raw_overall, list_desc = [], cutoff_sig = 0.002, rate = 0.2,start_trial_component = 9)
+        molecule_overall =  msubsampling_system_with_PCA(molecule_raw_overall, list_desc = [], cutoff_sig = 0.002, rate = 0.2,start_trial_component = 9)
         
         with open(molecule_overall_filename, 'wb') as handle:
             pickle.dump(molecule_overall, handle, protocol=2)
@@ -304,7 +304,7 @@ if __name__ == "__main__":
     os.chdir(cwd + '/' + result_dir)
     
     residual = fit_with_Linear(dens,y,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper)
-    model = fit_with_KerasNN(X_train,residual,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper, n_per_layer, n_layers, activation_choice,tol, slowdown_factor, early_stop_trials)
+    #model = fit_with_KerasNN(X_train,residual,functional, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform, lower, upper, n_per_layer, n_layers, activation_choice,tol, slowdown_factor, early_stop_trials)
     
     os.chdir(cwd)
     

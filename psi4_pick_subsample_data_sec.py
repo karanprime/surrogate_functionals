@@ -179,6 +179,7 @@ def process_one_molecule(molecule, functional,h,L,N, target, gamma, num_desc_der
     cwd = os.getcwd()
     dir_name = "{}_{}_{}_{}_{}".format(molecule,functional,str(L).replace('.','-'),str(h).replace('.','-'),N)
     print dir_name
+    print(os.getcwd())
     
     if os.path.isdir(dir_name) == False:
         print '\n****Error: Cant find the directory! ****\n'
@@ -206,7 +207,7 @@ def process_one_molecule(molecule, functional,h,L,N, target, gamma, num_desc_der
         pool.apply_async(process_each_block, args=(molecule,functional,i,j,k, target, gamma, num_desc_deri, num_desc_deri_squa, num_desc_ave_dens,desc_transform,target_transform))
     pool.close()
     pool.join()
-
+    print('done')
 
     return
 
