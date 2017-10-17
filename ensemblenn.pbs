@@ -1,0 +1,24 @@
+#PBS -N EnsembleNNTest2
+#PBS -l nodes=2:ppn=4:nvidiagpu
+#PBS -l pmem=2gb
+#PBS -l walltime=12:00:00
+#PBS -q joe-fast
+#PBS -j oe
+#PBS -o myjob.out
+#PBS -m abe
+#PBS -M karanprime@gatech.edu
+
+module load use.own
+module load anaconda/2-4.2.0
+
+cd /nv/hp11/kshah84/data/surrogate_functionals
+
+source activate psi4-fd
+echo "started data gen"
+python psi4_generate_data_sec.py single molecule_coord_database.json H2O 0.1 10. 1
+python getDescriptors_sec.py single H2O B3LYP 0.1 10. 1
+python psi4_pick_subsample_data_sec.py single H2O 0.1 10. 1 B3LYP 0 0 0 0 epxc log log
+echo "started fit"
+psi_4_linear_fit_sec.py mol_list.txt B3LYP 0.1 10. 1 0 0 0 0 epxc log log -30 10
+psi_4_linear_nn_sec.py B3LYP 0.1 10. 1 0 0 0 0 epxc log log -30 10 10 10 tanh 1 1e-8 50
+
