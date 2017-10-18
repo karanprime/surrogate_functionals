@@ -20,5 +20,5 @@ python getDescriptors_sec.py single H2O B3LYP 0.1 10. 1
 python psi4_pick_subsample_data_sec.py single H2O 0.1 10. 1 B3LYP 0 0 0 0 epxc log log
 echo "started fit"
 python psi_4_linear_fit_sec.py mol_list.txt B3LYP 0.1 10. 1 0 0 0 0 epxc log log -30 10
-python psi_4_nn_fit_sec.py B3LYP 0.1 10. 1 0 0 0 0 epxc log log -30 10 10 10 tanh 1 1e-8 50
+python psi_4_nn_fit_sec.py mol_list.txt B3LYP 0.1 10. 1 0 0 0 0 epxc log log -30 10 10 10 tanh 1 1e-8 50
 
