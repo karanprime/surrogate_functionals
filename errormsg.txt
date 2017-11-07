@@ -1,0 +1,27 @@
+Error while gen data with H2O 0.1 10. 1 on pace
+
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/nv/hp22/amedford6/medford-shared/builds/anaconda/4.2.0/none/anaconda2/envs/psi4-fd/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/gpfs/pace1/project/chbe-medford/medford-share/builds/psi4/1.0-1080-g0d81e24/gcc-5.3.0+openmpi-1.8+mkl-11.2/psi4-1.0-1080-g0d81e24/install/lib/psi4/extras.py", line 42, in clean_numpy_files
+    os.unlink(nfile)
+OSError: [Errno 2] No such file or directory: 'stdout.default.20568.180.npz'
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "/nv/hp22/amedford6/medford-shared/builds/anaconda/4.2.0/none/anaconda2/envs/psi4-fd/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/gpfs/pace1/project/chbe-medford/medford-share/builds/psi4/1.0-1080-g0d81e24/gcc-5.3.0+openmpi-1.8+mkl-11.2/psi4-1.0-1080-g0d81e24/install/lib/psi4/extras.py", line 42, in clean_numpy_files
+    os.unlink(nfile)
+OSError: [Errno 2] No such file or directory: 'stdout.default.20568.180.npz'
+
+
+On local machine
+
+forrtl: severe (174): SIGSEGV, segmentation fault occurred
+Image              PC                Routine            Line        Source
+libpcm.so.1        00007F287729F725  Unknown               Unknown  Unknown
+
+
+Issue with Keras: https://github.com/fchollet/keras/issues/4044
+ Optimizer weight shape (1, 4) not compatible with provided weight shape (4, 4)
