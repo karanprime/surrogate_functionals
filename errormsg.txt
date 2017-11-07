@@ -25,3 +25,5 @@ libpcm.so.1        00007F287729F725  Unknown               Unknown  Unknown
 
 Issue with Keras: https://github.com/fchollet/keras/issues/4044
  Optimizer weight shape (1, 4) not compatible with provided weight shape (4, 4)
+
+Encoding problem while opeining pickle files
