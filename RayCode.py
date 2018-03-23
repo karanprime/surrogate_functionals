@@ -240,7 +240,7 @@ def lda_c( n, x):
     ec = G(rs ** 0.5, gamma, alpha1, beta1, beta2, beta3, beta4)
     return n*ec
     #e[:] += n * ec
-
+    save_resulting_figure(dens = n,result.x = LDA_x,X_train = X,NN_model,y)
 def predict_LDA(n,LDA_x):
 
     n = np.asarray(n)
@@ -251,7 +251,7 @@ def predict_LDA_residual(n,LDA_x,X,NN_model):
 
     n = np.asarray(n)
 
-    return lda_x(n,LDA_x) + lda_c(n,LDA_x) + NN_model.predict(X)
+    return lda_x(n,LDA_x) + lda_c(n,LDA_x) + NN_model.predict(X) #Why is this X? Wasn't the network trained on residuals?
 
 def save_resulting_figure(n,LDA_x,X,NN_model,y):
 

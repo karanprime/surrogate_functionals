@@ -1,0 +1,10 @@
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 1
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 2
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 3
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 4
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 5
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 6
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 7
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 8
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 9
+python ./code/predictLDAnn.py 10_0-02_5_LDA_residual_fit_20_2_tanh_setup.json epxc_mGGA_real_real_numerical 100. 1e-10 500 10
