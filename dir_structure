@@ -1,0 +1,42 @@
+ |-10-0_0-02_5
+  |  |-epxc_mGGA_real_real_numerical
+  |  |  |-data
+  |  |  |  |-C2H2
+  |  |  |  |-C2H4
+  |  |  |  |-C2H6
+  |  |  |  |-CH4
+  |  |  |  |-CH3OH
+  |  |  |  |-CO
+  |  |  |  |-CO2
+  |  |  |  |-H2
+  |  |  |  |-H2O
+  |  |  |  |-HCN
+  |  |  |  |-HNC
+  |  |  |  |-N2
+  |  |  |  |-N2O
+  |  |  |  |-NH3
+  |  |  |  |-O3
+  |  |  |-NN_LDA_residual_20_2_relu
+  |  |  |  |-Submodel_2
+  |  |  |  |-Submodel_7
+  |  |  |  |-Submodel_6
+  |  |  |  |-Submodel_9
+  |  |  |  |-Submodel_10
+  |  |  |  |-Submodel_1
+  |  |  |  |-Submodel_8
+  |  |  |  |-Submodel_4
+  |  |  |  |-Submodel_5
+  |  |  |  |-Submodel_3
+  |  |  |-NN_LDA_residual_20_2_tanh
+  |  |  |  |-Submodel_3
+  |  |  |  |-Submodel_5
+  |  |  |  |-Submodel_4
+  |  |  |  |-Submodel_7
+  |  |  |  |-Submodel_6
+  |  |  |  |-Submodel_9
+  |  |  |  |-Submodel_8
+  |  |  |  |-Submodel_10
+  |  |  |  |-Submodel_1
+  |  |  |  |-Submodel_2
+  |  |  |-LDA_fit
+  |-code
